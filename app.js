@@ -7,7 +7,7 @@ const logic = require('./logic')
 
 //Endpoint
 app.get('/:id/:timestamp', (req, res) => {
-  let id = req.params.id;
+  let amenityId = req.params.id;
   let time = new Date(parseInt(req.params.timestamp));
   let amenity = [];
   let reservations = [];
@@ -17,9 +17,10 @@ app.get('/:id/:timestamp', (req, res) => {
       console.log(err);
       res.end(err);
     }
+
     Papa.parse(data, {
       complete: results => {
-       amenity.push(results.data[id][0], results.data[id][1]);
+       amenity.push(results.data[amenityId][0], results.data[amenityId][1]);
       }
     });
     
@@ -28,18 +29,21 @@ app.get('/:id/:timestamp', (req, res) => {
         console.log(err);
         res.end(err);
       }
+
       Papa.parse(data, {
         complete: results => {
-         results.data.forEach((item) => {
+         results.data.forEach((item) => {                 
+                              //checking if its same Date and adding to reservations list
            let reservDate = new Date(parseInt(item[5]));
-           if (item[1] === id && time.getFullYear() === reservDate.getFullYear() && time.getMonth() === reservDate.getMonth() && time.getDate() === reservDate.getDate()) {
+           if (item[1] === amenityId && time.getFullYear() === reservDate.getFullYear() && time.getMonth() === reservDate.getMonth() && time.getDate() === reservDate.getDate()) {
             reservations.push(item);
            }
          })
-         res.send(logic.showData(amenity, reservations));
+         res.send(logic.processDataAndShow(amenity, reservations));  //showData sorts and adding to list reservations for choosen amenity
          res.end();
         }
       });
+
     })
   }) 
 })
