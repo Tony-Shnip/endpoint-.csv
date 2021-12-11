@@ -8,7 +8,7 @@ const logic = require('./logic')
 //Endpoint
 app.get('/:id/:timestamp', (req, res) => {
   let amenityId = req.params.id;
-  let time = new Date(parseInt(req.params.timestamp));
+  let reservationTime = new Date(parseInt(req.params.timestamp));
   let amenity = [];
   let reservations = [];
 
@@ -35,7 +35,7 @@ app.get('/:id/:timestamp', (req, res) => {
          results.data.forEach((item) => {                 
                               //checking if its same Date and adding to reservations list
            let reservDate = new Date(parseInt(item[5]));
-           if (item[1] === amenityId && time.getFullYear() === reservDate.getFullYear() && time.getMonth() === reservDate.getMonth() && time.getDate() === reservDate.getDate()) {
+           if (item[1] === amenityId && reservationTime.getFullYear() === reservDate.getFullYear() && reservationTime.getMonth() === reservDate.getMonth() && reservationTime.getDate() === reservDate.getDate()) {
             reservations.push(item);
            }
          })
