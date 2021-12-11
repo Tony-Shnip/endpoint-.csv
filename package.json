@@ -1,0 +1,34 @@
+{
+  "name": "endpoint-.csv",
+  "version": "1.0.0",
+  "description": "Endpoint which returning reservations from a given object",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tony-Shnip/endpoint-.csv.git"
+  },
+  "keywords": [
+    "Endpoint",
+    "NodeJS",
+    "Express",
+    ".csv-files",
+    "PapaParse"
+  ],
+  "author": "Anton Shnip <shnip12345@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tony-Shnip/endpoint-.csv/issues"
+  },
+  "homepage": "https://github.com/Tony-Shnip/endpoint-.csv#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "papaparse": "^5.3.1"
+  }
+}
